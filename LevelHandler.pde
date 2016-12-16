@@ -1,15 +1,9 @@
 class LevelHandler {
   Handler handler;
-  Spiller player1;
-  Wall wall1;
+  Level1 level1 = new Level1();
   LevelHandler(Handler handler) {
       this.handler = handler;
-      player1 = new Spiller(10,10);
-      handler.addEntity(player1);
-      wall1 = new Wall(200,10,10,100,WallStates.SOLID);
-      handler.addEntity(wall1);
-      handler.addCollisionEntity(wall1);
-      handler.addCollisionEntity(player1);
+      level1.start();
     
     
     
@@ -20,7 +14,9 @@ class LevelHandler {
   void render() {
     handler.render();
   }
-  
+  void skiftLevel(LevelAbstract level) {
+    level.start();
+  }
   
   
   
