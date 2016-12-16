@@ -7,10 +7,10 @@ class Spiller extends SpilObjekt{
  int tickCounter = 0;
  String characterMode = "Standing";
  boolean goesLeft = false; // om han peger mod venstre eller ej.
- int width = 96; //Husk at ændre i super()
- int height = 96;
+ int spillerWidth = 96; //Husk at ændre i super()
+ int spillerHeight = 96;
  Spiller(float x, float y) {
-   super(x,y,96,96); //LIGE HER!
+   super(x,y,55,64,ID.Player); //LIGE HER!
  }
  void tick() {
    if (keyPressed) {
@@ -48,31 +48,60 @@ class Spiller extends SpilObjekt{
    //println("xspeed="+xspeed+", yspeed="+yspeed);
  }
  void render() {
-   //Kommentar!
-   //copy(karakterer,32*animationCounter,64,32,32,(int)x,(int)y,96,96);
    pushMatrix();
    if (goesLeft) {
      scale(-1,1);
      sprite = karakterer.get(32*animationCounter,64,32,32);
-     image(sprite,-x-width,y,width,height); 
+     image(sprite,(-x-spillerWidth)+20,y-32,spillerWidth,spillerHeight); 
    } else {
      sprite = karakterer.get(32*animationCounter,64,32,32);
-     image(sprite,x,y,width,height); 
+     image(sprite,x-20,y-32,spillerWidth,spillerHeight); 
    }
-   sprite = karakterer.get(32*animationCounter,64,32,32);
-   image(sprite,x,y,96,96);
+   
    popMatrix();
    if (characterMode == "Running") {
    tickCounter++;
    if (tickCounter == 10) {
     animationCounter++; 
-    println("Tick! AnimationCounter: "+animationCounter);
+    //println("Tick! AnimationCounter: "+animationCounter);
     tickCounter = 0;
    }
    if (animationCounter >= 4 ) {
     animationCounter = 0; 
    }
    }
+   //fill(255,255,255,100);
+   rect(x,y,objectWidth,objectHeight);
+ }
+ void collide(SpilObjekt collision) {
+  if (collision.getID() == ID.Wall) {
+    //xspeed*=-1;
+    //yspeed*=-1;
+    if (x+objectWidth>collision.getX() && x + objectWidth < collision.getX()+collision.getWidth()/2) {
+        x = collision.getX()-objectWidth;
+        xspeed = 0;
+        println("Bump-Venstre");
+    }
+    else if (x<collision.getX()+collision.getWidth() && x>collision.getX()+collision.getWidth()/2) {
+        x = collision.getX()+collision.getWidth();
+        xspeed = 0;
+        println("Bump-Højre");
+    }
+    
+    else if (y+objectHeight>collision.getY() && y + objectHeight < collision.getY()+collision.getHeight()/2) {
+        y = collision.getY()-objectHeight;
+        yspeed = 0;
+        println("Bump-Bund");
+    }
+    else if (y<collision.getY()+collision.getHeight() && y>collision.getY()+collision.getHeight()/2) {
+        y = collision.getY()+collision.getHeight();
+        yspeed = 0;
+        println("Bump-Top");
+    }
+    
+    
+    
+  }
  }
  
  
