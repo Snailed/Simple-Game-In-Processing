@@ -1,5 +1,4 @@
 class Spiller extends SpilObjekt{
- PImage karakterer = loadImage("characters.png");
  PImage sprite = new PImage();
  double xspeed = 0;
  double yspeed = 0;
@@ -10,7 +9,7 @@ class Spiller extends SpilObjekt{
  int spillerWidth = 96; //Husk at ændre i super()
  int spillerHeight = 96;
  Spiller(float x, float y) {
-   super(x,y,55,64,ID.Player); //LIGE HER!
+   super(x,y,55,64,ID.PLAYER); //LIGE HER!
  }
  void tick() {
    if (keyPressed) {
@@ -71,10 +70,10 @@ class Spiller extends SpilObjekt{
    }
    }
    //fill(255,255,255,100);
-   rect(x,y,objectWidth,objectHeight);
+   //rect(x,y,objectWidth,objectHeight);
  }
  void collide(SpilObjekt collision) {
-  if (collision.getID() == ID.Wall) {
+  if (collision.getID() == ID.WALL) {
     //xspeed*=-1;
     //yspeed*=-1;
     if (x+objectWidth>collision.getX() && x + objectWidth < collision.getX()+collision.getWidth()/2) {

@@ -12,7 +12,7 @@ class Handler {
     }
     
     for(int i = 0; i < collisionEntities.size(); i++) {
-     if (collisionEntities.get(i).getID() == ID.Player) { //TODO: Lav en testvæg
+     if (collisionEntities.get(i).getID() == ID.PLAYER) { //TODO: Lav en testvæg
        spiller = collisionEntities.get(i);
        spillerXMidte = spiller.getX()+spiller.getWidth()/2;
        spillerYMidte = spiller.getY()+spiller.getHeight()/2;
@@ -25,7 +25,7 @@ class Handler {
     }
     
     for (int i = 0; i < collisionEntities.size();i++) {
-      if (collisionEntities.get(i).getID() != ID.Player) {
+      if (collisionEntities.get(i).getID() != ID.PLAYER) {
       
      if (spiller.getX()+spiller.getWidth()>collisionEntities.get(i).getX()) {
         if (spiller.getX() < collisionEntities.get(i).getX()+collisionEntities.get(i).getWidth()) {

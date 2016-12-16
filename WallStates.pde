@@ -1,0 +1,4 @@
+enum WallStates {
+ SOLID,
+ INVISIBLE
+}
