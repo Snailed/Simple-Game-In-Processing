@@ -1,0 +1,8 @@
+enum BackgroundTileType {
+ BIGSQUARE,
+ BIGFLATSQUARE,
+ LITTLEWALKWAY,
+ TINYWALKWAY,
+  
+  
+}

@@ -7,9 +7,11 @@ class Level1 extends LevelAbstract{
  void start() {
    player1 = new Spiller(10,10);
    wall1 = new Wall(200,10,10,100,WallStates.SOLID);
-   
+   handler.addEntity(new BackgroundTile(30,30,BackgroundTileType.BIGSQUARE));
    handler.addCollisionEntity(wall1);
    handler.addCollisionEntity(player1); 
+   
+   
    
    handler.addCollisionEntity(new Wall(0,0,10,700,WallStates.SOLID));
    handler.addCollisionEntity(new Wall(0,0,700,10,WallStates.SOLID));

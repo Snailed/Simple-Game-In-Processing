@@ -73,44 +73,7 @@ class Spiller extends SpilObjekt{
    //rect(x,y,objectWidth,objectHeight);
  }
  void collide(SpilObjekt collision) {
-  //if (collision.getID() == ID.WALL) {
-  //  //xspeed*=-1;
-  //  //yspeed*=-1;
-  //  if (xspeed < 0) {
-  //  if (x+objectWidth>collision.getX() && x + objectWidth < collision.getX()+collision.getWidth()/2) {
-  //      x = collision.getX()-objectWidth;
-  //      xspeed = 0;
-  //      println("Bump-Venstre");
-  //  }
-  //  }
-  //  else if (xspeed > 0) {
-  //  if (x<collision.getX()+collision.getWidth() && x>collision.getX()+collision.getWidth()/2) {
-  //      x = collision.getX()+collision.getWidth();
-  //      xspeed = 0;
-  //      println("Bump-Højre");
-  //  }
-  //  }
-    
-  //  if (yspeed < 0) {
-  //   if (y+objectHeight>collision.getY() && y + objectHeight < collision.getY()+collision.getHeight()/2) {
-  //      y = collision.getY()-objectHeight;
-  //      yspeed = 0;
-  //      println("Bump-Bund");
-  //    }
-  //  }
-    
-  //  else if (yspeed > 0) {
-  //  if (y<collision.getY()+collision.getHeight() && y>collision.getY()+collision.getHeight()/2) {
-  //      y = collision.getY()+collision.getHeight();
-  //      yspeed = 0;
-  //      println("Bump-Top");
-        
-  //  }
-  //  }
-    
-    
-    
-  //}
+  
  }
  void moveX() {
    
