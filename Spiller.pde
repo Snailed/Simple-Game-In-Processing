@@ -42,8 +42,8 @@ class Spiller extends SpilObjekt{
    if (yspeed > 5) yspeed = 5;
    if (xspeed < -5) xspeed = -5;
    if (yspeed < -5) yspeed = -5;
-   x += xspeed;
-   y += yspeed;
+   moveX();
+   moveY();
    //println("xspeed="+xspeed+", yspeed="+yspeed);
  }
  void render() {
@@ -73,35 +73,77 @@ class Spiller extends SpilObjekt{
    //rect(x,y,objectWidth,objectHeight);
  }
  void collide(SpilObjekt collision) {
-  if (collision.getID() == ID.WALL) {
-    //xspeed*=-1;
-    //yspeed*=-1;
-    if (x+objectWidth>collision.getX() && x + objectWidth < collision.getX()+collision.getWidth()/2) {
-        x = collision.getX()-objectWidth;
-        xspeed = 0;
-        println("Bump-Venstre");
-    }
-    else if (x<collision.getX()+collision.getWidth() && x>collision.getX()+collision.getWidth()/2) {
-        x = collision.getX()+collision.getWidth();
-        xspeed = 0;
-        println("Bump-Højre");
-    }
+  //if (collision.getID() == ID.WALL) {
+  //  //xspeed*=-1;
+  //  //yspeed*=-1;
+  //  if (xspeed < 0) {
+  //  if (x+objectWidth>collision.getX() && x + objectWidth < collision.getX()+collision.getWidth()/2) {
+  //      x = collision.getX()-objectWidth;
+  //      xspeed = 0;
+  //      println("Bump-Venstre");
+  //  }
+  //  }
+  //  else if (xspeed > 0) {
+  //  if (x<collision.getX()+collision.getWidth() && x>collision.getX()+collision.getWidth()/2) {
+  //      x = collision.getX()+collision.getWidth();
+  //      xspeed = 0;
+  //      println("Bump-Højre");
+  //  }
+  //  }
     
-    else if (y+objectHeight>collision.getY() && y + objectHeight < collision.getY()+collision.getHeight()/2) {
-        y = collision.getY()-objectHeight;
-        yspeed = 0;
-        println("Bump-Bund");
-    }
-    else if (y<collision.getY()+collision.getHeight() && y>collision.getY()+collision.getHeight()/2) {
-        y = collision.getY()+collision.getHeight();
-        yspeed = 0;
-        println("Bump-Top");
-    }
+  //  if (yspeed < 0) {
+  //   if (y+objectHeight>collision.getY() && y + objectHeight < collision.getY()+collision.getHeight()/2) {
+  //      y = collision.getY()-objectHeight;
+  //      yspeed = 0;
+  //      println("Bump-Bund");
+  //    }
+  //  }
+    
+  //  else if (yspeed > 0) {
+  //  if (y<collision.getY()+collision.getHeight() && y>collision.getY()+collision.getHeight()/2) {
+  //      y = collision.getY()+collision.getHeight();
+  //      yspeed = 0;
+  //      println("Bump-Top");
+        
+  //  }
+  //  }
     
     
     
-  }
+  //}
+ }
+ void moveX() {
+   
+   if (xspeed > 0) {
+    int tx = (int) (x + xspeed+ objectWidth);
+     if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
+      x += xspeed;
+     }
+     
+   } else if (xspeed < 0) {
+     int tx = (int) x + (int) xspeed;
+     if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
+      x += xspeed;
+     }
+   }
+   
  }
  
+ 
+ void moveY() {
+   if (yspeed > 0) {
+   int ty = (int) (y+yspeed+objectHeight);
+   if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
+     y += yspeed;
+   }
+   } else if (yspeed < 0) {
+   int ty = (int) (y+yspeed);
+   if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
+     y += yspeed;
+   }
+   }
+   
+ }
+
  
 }

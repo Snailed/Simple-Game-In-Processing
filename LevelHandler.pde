@@ -1,15 +1,17 @@
 class LevelHandler {
   Handler handler;
-  Level1 level1 = new Level1();
+  LevelAbstract currentLevel;
   LevelHandler(Handler handler) {
       this.handler = handler;
-      level1.start();
+      currentLevel = new Level1();
+      currentLevel.start();
     
     
     
   }
   void tick() {
     handler.tick();
+    currentLevel.tick();
   }
   void render() {
     handler.render();
