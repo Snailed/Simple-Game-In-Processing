@@ -2,14 +2,24 @@ import java.util.*;
 class Handler {
  LinkedList<SpilObjekt> entities = new LinkedList();
  LinkedList<SpilObjekt> collisionEntities = new LinkedList();
+ LinkedList<BackgroundTile> tiles = new LinkedList();
  int updateticker;
  SpilObjekt spiller;
  float spillerXMidte;
  float spillerYMidte;
+ float xOffset = 0;
+ float yOffset = 0;
+ float camX;
+ float camY;
+ 
  void tick() {
+   for(int i = 0; i < tiles.size(); i++) {
+     tiles.get(i).tick();
+    }
    for(int i = 0; i < entities.size(); i++) {
      entities.get(i).tick();
     }
+    
     
     for(int i = 0; i < collisionEntities.size(); i++) {
      if (collisionEntities.get(i).getID() == ID.PLAYER) { //TODO: Lav en testvæg
@@ -41,13 +51,24 @@ class Handler {
       
     }
     
-    
+    for (int i = 0; i < collisionEntities.size();i++) {
+      
+      if (collisionEntities.get(i).getID() == ID.PLAYER) {
+        SpilObjekt temp = collisionEntities.get(i);
+        scrollCamera(temp);
+      }
+    }
     
  }
   void render() {
+    translate(-camX,-camY);
+    for(int i = 0; i < tiles.size(); i++) {
+     tiles.get(i).render();
+     } 
    for(int i = 0; i < entities.size(); i++) {
      entities.get(i).render();
      } 
+   
   }
   void addEntity(SpilObjekt input) {
    entities.add(input); 
@@ -56,11 +77,17 @@ class Handler {
     entities.add(input);
    collisionEntities.add(input); 
   }
+  void addTile(BackgroundTile tile) {
+   tiles.add(tile); 
+  }
   void clearEntities() {
    entities.clear(); 
   }
   void clearCollisionEntities() {
    collisionEntities.clear(); 
+  }
+  void clearTiles() {
+   tiles.clear(); 
   }
   SpilObjekt getObjectAtPosition(int x, int y) {
     for (int i = 0; i < collisionEntities.size();i++) {
@@ -79,5 +106,47 @@ class Handler {
       
     } return null;
   }
-  
+ BackgroundTile getTileAtPosition(int x, int y) {
+  for (int i = 0; i < tiles.size(); i++) {
+    if (x > tiles.get(i).getX() && x < tiles.get(i).getX() + tiles.get(i).getTileWidth()) {
+      if (y > tiles.get(i).getY() && y < tiles.get(i).getY() + tiles.get(i).getTileHeight()) {
+        //println("Y-koordinaten "+y+" er større end "+tiles.get(i).getY()+" og mindre end "+(tiles.get(i).getY() + tiles.get(i).getTileHeight())); 
+        return tiles.get(i);
+        
+      } else {
+       //println("Y-koordinaten "+y+" er større end "+tiles.get(i).getY()+" og mindre end "+(tiles.get(i).getY() + tiles.get(i).getTileHeight()));  
+      }
+    } else {
+     //println("X-koordinaten "+x+" er større end "+tiles.get(i).getX()+" og mindre end "+(tiles.get(i).getX() + tiles.get(i).getTileWidth())); 
+    }
+  }
+  return null;
+   
+   
+ }
+ 
+ void scrollCamera(SpilObjekt spiller) {
+    long offsetMaxX = 10000 - 466;
+    long offsetMaxY = 10000 - 466;
+    long offsetMinX = -10000;
+    long offsetMinY = -10000;
+   
+   camX = spiller.getX() - 466 / 2;
+   camY = spiller.getY() - 466 / 2;
+   
+   if (camX > offsetMaxX) {
+    camX = offsetMaxX;
+   }
+else if (camX < offsetMinX) { 
+    camX = offsetMinX;
+    } 
+    if (camY > offsetMaxY) {
+    camY = offsetMaxY;
+   }
+else if (camY < offsetMinY) { 
+    camY = offsetMinY;
+    } 
+    camX += spiller.getWidth()/2;
+    camY += spiller.getHeight()/2;
+ }
 }

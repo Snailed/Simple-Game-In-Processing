@@ -80,13 +80,18 @@ class Spiller extends SpilObjekt{
    if (xspeed > 0) {
     int tx = (int) (x + xspeed+ objectWidth);
      if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
-      x += xspeed;
+       if (handler.getTileAtPosition(tx,(int)(y+objectHeight-20))!= null || handler.getTileAtPosition(tx,(int)(y+objectHeight)) != null)  {   
+        x += xspeed;
+       }
      }
      
    } else if (xspeed < 0) {
      int tx = (int) x + (int) xspeed;
      if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
-      x += xspeed;
+       if (handler.getTileAtPosition(tx,(int)(y+objectHeight-20))!= null || handler.getTileAtPosition(tx,(int)(y+objectHeight)) != null) {
+         
+        x += xspeed;
+       }
      }
    }
    
@@ -97,12 +102,16 @@ class Spiller extends SpilObjekt{
    if (yspeed > 0) {
    int ty = (int) (y+yspeed+objectHeight);
    if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
-     y += yspeed;
+     if (handler.getTileAtPosition((int)x,ty)!= null && handler.getTileAtPosition((int)(x+objectWidth),ty) != null)  {   
+        y += yspeed;
+       }
    }
    } else if (yspeed < 0) {
-   int ty = (int) (y+yspeed);
+   int ty = (int) (y+yspeed+objectHeight-20);
    if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
-     y += yspeed;
+     if (handler.getTileAtPosition((int)x,ty)!= null && handler.getTileAtPosition((int)(x+objectWidth),ty) != null)  {   
+        y += yspeed;
+       }
    }
    }
    

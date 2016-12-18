@@ -10,6 +10,8 @@ void setup() {
 
 void draw() {
   background(0);
+  scale(1.5,1.5);
+  
   levelHandler.tick();
   levelHandler.render();
   
