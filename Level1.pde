@@ -6,15 +6,16 @@ class Level1 extends LevelAbstract{
  void start() {
    player1 = new Spiller(40,40);
    
-   handler.addTile(new BackgroundTile(162,90,BackgroundTileType.LITTLEWALKWAY));
-   handler.addTile(new BackgroundTile(226,90,BackgroundTileType.LITTLEWALKWAY));
-   handler.addTile(new BackgroundTile(30,30,BackgroundTileType.BIGSQUARE));
+   handler.addTile(new BackgroundTile(170,90,BackgroundTileType.LITTLEWALKWAY,3));
+   handler.addTile(new BackgroundTile(340,90,BackgroundTileType.LITTLEWALKWAY_ENDLESS,3));
+   handler.addTile(new BackgroundTile(30,30,BackgroundTileType.BIGSQUARE,2));
    
-   handler.addTile(new BackgroundTile(250,30,BackgroundTileType.BIGSQUARE));
-   handler.addCollisionEntity(player1);   
-   println("Tilen på koordinaterne (31,31) er: "+handler.getTileAtPosition(31,31));
-   println("Tilen på koordinaterne (162,31) er: "+handler.getTileAtPosition(150,31));
-   println("Tilen på koordinaterne (31,300) er: "+handler.getTileAtPosition(31,300));
+   handler.addTile(new BackgroundTile(250,30,BackgroundTileType.BIGSQUARE,2));
+   handler.addCollisionEntity(player1); 
+
+   
+   
+
  }
  void stop() {
    handler.clearEntities();

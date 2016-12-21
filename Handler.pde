@@ -1,4 +1,6 @@
 import java.util.*;
+ static float camX;
+ static float camY;
 class Handler {
  LinkedList<SpilObjekt> entities = new LinkedList();
  LinkedList<SpilObjekt> collisionEntities = new LinkedList();
@@ -9,8 +11,7 @@ class Handler {
  float spillerYMidte;
  float xOffset = 0;
  float yOffset = 0;
- float camX;
- float camY;
+
  
  void tick() {
    for(int i = 0; i < tiles.size(); i++) {
@@ -41,7 +42,7 @@ class Handler {
         if (spiller.getX() < collisionEntities.get(i).getX()+collisionEntities.get(i).getWidth()) {
          if (spiller.getY()+spiller.getHeight()>collisionEntities.get(i).getY()) {
             if (spiller.getY() < collisionEntities.get(i).getY()+collisionEntities.get(i).getHeight()) {
-               println("Bump med væg der har positionerne: ("+collisionEntities.get(i).getX()+","+collisionEntities.get(i).getX()+")");
+               //println("Bump med væg der har positionerne: ("+collisionEntities.get(i).getX()+","+collisionEntities.get(i).getX()+")");
                spiller.collide(collisionEntities.get(i));
             }
          }
@@ -131,8 +132,8 @@ class Handler {
     long offsetMinX = -10000;
     long offsetMinY = -10000;
    
-   camX = spiller.getX() - 466 / 2;
-   camY = spiller.getY() - 466 / 2;
+   camX = spiller.getX() - 700 / 2;
+   camY = spiller.getY() - 700 / 2;
    
    if (camX > offsetMaxX) {
     camX = offsetMaxX;
@@ -149,4 +150,9 @@ else if (camY < offsetMinY) {
     camX += spiller.getWidth()/2;
     camY += spiller.getHeight()/2;
  }
+ 
+ 
+   
+ 
+ 
 }

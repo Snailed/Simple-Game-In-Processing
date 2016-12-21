@@ -8,6 +8,10 @@ class Spiller extends SpilObjekt{
  boolean goesLeft = false; // om han peger mod venstre eller ej.
  int spillerWidth = 96; //Husk at ændre i super()
  int spillerHeight = 96;
+ boolean knifeCooldown = false;
+ int startCooldownTimer;
+ 
+ 
  Spiller(float x, float y) {
    super(x,y,55,64,ID.PLAYER); //LIGE HER!
  }
@@ -45,6 +49,9 @@ class Spiller extends SpilObjekt{
    moveX();
    moveY();
    //println("xspeed="+xspeed+", yspeed="+yspeed);
+   
+   
+   
  }
  void render() {
    pushMatrix();
@@ -69,8 +76,21 @@ class Spiller extends SpilObjekt{
     animationCounter = 0; 
    }
    }
-   //fill(255,255,255,100);
-   //rect(x,y,objectWidth,objectHeight);
+   
+   
+   if (mousePressed == true) {
+   if (knifeCooldown == false) {
+   startCooldownTimer = millis();
+   handler.addCollisionEntity(new Knife(x,y)); 
+   knifeCooldown = true;
+   } else if (millis() > startCooldownTimer+300) {
+     knifeCooldown = false;
+   }
+  
+  
+  
+   }
+  
  }
  void collide(SpilObjekt collision) {
   
@@ -116,6 +136,8 @@ class Spiller extends SpilObjekt{
    }
    
  }
-
+ 
+  
+ 
  
 }
