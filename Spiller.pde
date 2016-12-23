@@ -98,7 +98,7 @@ class Spiller extends SpilObjekt{
  void moveX() {
    
    if (xspeed > 0) {
-    int tx = (int) (x + xspeed+ objectWidth);
+    int tx = (int) (x + xspeed+ objectWidth-1);
      if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
        if (handler.getTileAtPosition(tx,(int)(y+objectHeight-20))!= null || handler.getTileAtPosition(tx,(int)(y+objectHeight)) != null)  {   
         x += xspeed;
@@ -106,7 +106,7 @@ class Spiller extends SpilObjekt{
      }
      
    } else if (xspeed < 0) {
-     int tx = (int) x + (int) xspeed;
+     int tx = (int) x + (int) xspeed-1;
      if (!((handler.getObjectAtPosition(tx,(int)y)!=null || handler.getObjectAtPosition(tx,(int)(y+objectHeight))!=null))) {
        if (handler.getTileAtPosition(tx,(int)(y+objectHeight-20))!= null || handler.getTileAtPosition(tx,(int)(y+objectHeight)) != null) {
          
@@ -120,14 +120,14 @@ class Spiller extends SpilObjekt{
  
  void moveY() {
    if (yspeed > 0) {
-   int ty = (int) (y+yspeed+objectHeight);
+   int ty = (int) (y+yspeed+objectHeight-1);
    if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
      if (handler.getTileAtPosition((int)x,ty)!= null && handler.getTileAtPosition((int)(x+objectWidth),ty) != null)  {   
         y += yspeed;
        }
    }
    } else if (yspeed < 0) {
-   int ty = (int) (y+yspeed+objectHeight-20);
+   int ty = (int) (y+yspeed+objectHeight-20-1);
    if (!(handler.getObjectAtPosition((int)x,ty)!=null || handler.getObjectAtPosition((int)(x+objectWidth),ty)!=null)) {
      if (handler.getTileAtPosition((int)x,ty)!= null && handler.getTileAtPosition((int)(x+objectWidth),ty) != null)  {   
         y += yspeed;
