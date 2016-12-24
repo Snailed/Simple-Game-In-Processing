@@ -16,6 +16,7 @@ class BackgroundTile extends SpilObjekt {
        tile = backgroundtiles.get(32,32,80,93);
        tileWidth = 80*(int)scale;
        tileHeight = 80*(int)scale;
+       
      break;
      case BIGFLATSQUARE:
        tile = backgroundtiles.get(32,32,80,80);
