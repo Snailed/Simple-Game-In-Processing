@@ -38,6 +38,16 @@ class BackgroundTile extends SpilObjekt {
        tileWidth = 20*(int)scale;
        tileHeight = 20*(int)scale;
       break;
+      case BROAD_STAIRS:
+      tile = backgroundtiles.get(184,32,32,16);
+      tileWidth = 32*(int)scale;
+      tileHeight = 16*(int)scale;
+      break;
+      case TALL_FLOATING_BIG_PLATFORM:
+      tile = backgroundtiles.get(32,260,48,56);
+      tileWidth = 48*(int)scale;
+      tileHeight = 33*(int)scale;
+      break;
     }
   }
   void render() {
